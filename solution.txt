@@ -1,2 +1,33 @@
 Please add your pseudocode to this file
 And a written explanation of your solution
+
+pseudocode:
+FUNCTION consecutiveSubstrings(inputString):
+    CREATE empty list result
+    LET n = length of inputString
+
+    FOR i FROM 0 TO n - 1:
+        FOR j FROM i + 1 TO n:
+            substring = inputString[i .. j-1]
+            APPEND substring TO result
+
+    RETURN result
+
+Description:
+The code uses a nested loop. The outer loop starts at index 0, and the inner loop builds substrings by extending from that index to each subsequent position, 
+adding them one by one to the output array. Once the inner loop completes, the outer loop advances to the next starting index, 
+and the process repeats until every possible consecutive substring has been collected in the result array.
+
+This algorithm runs in O(n²) time and space. That’s fine for relatively small datasets, but quadratic complexity does not scale well. 
+If you anticipate generating more than ~10,000 substrings in a single call or expect frequent, high-volume calls, it would be worth considering more optimized approaches.
+
+1. Iterators/Generators
+    This would changes space complexity from O(n²) to O(1).
+    This could be useful if you only need to iterate through substrings but not store them.
+
+2. Suffix Trees
+    This method requires higher upfont costs, O(n log n), but is much faster as data arrays get larger.
+
+3. Substring Hashing (e.g., Rolling Hash, Rabin–Karp)
+    Another method that is useful with larger data sets: gives a reduction in the memory usage
+    by hashing instead of storing the substrings.
